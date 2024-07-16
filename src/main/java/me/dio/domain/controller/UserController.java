@@ -28,11 +28,11 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @PostMapping("/{}")
+    @PostMapping
     public ResponseEntity<User>  create(@RequestBody User userToBeCreated) {
            var createdUser = userService.create(userToBeCreated);
            URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-           .path("{id}")
+           .path("/{id}")
            .buildAndExpand(createdUser.getId())
            .toUri();
             return ResponseEntity.created(location).body(createdUser);
